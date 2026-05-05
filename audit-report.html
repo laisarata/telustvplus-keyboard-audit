@@ -4,25 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TELUS TV+ Keyboard Accessibility Audit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #0f0f1a;
-      color: #e8e8f0;
+      font-family: 'Open Sans', sans-serif;
+      background: #0B0B0B;
+      color: #E5E5E5;
       line-height: 1.6;
       font-size: 16px;
     }
 
     /* ── Hero ── */
     .hero {
-      background: linear-gradient(135deg, #1a0a2e 0%, #0d1b3e 50%, #0a2a1a 100%);
+      background: linear-gradient(135deg, #0f0a14 0%, #0B0B0B 50%, #0a120a 100%);
       padding: 60px 40px;
       text-align: center;
-      border-bottom: 1px solid #2a2a4a;
+      border-bottom: 1px solid #2B2B2B;
       position: relative;
       overflow: hidden;
     }
@@ -30,17 +31,17 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 30% 50%, rgba(75,0,130,0.3) 0%, transparent 60%),
-                  radial-gradient(ellipse at 70% 50%, rgba(0,80,160,0.2) 0%, transparent 60%);
+      background: radial-gradient(ellipse at 30% 50%, rgba(78,22,87,0.35) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(96,191,2,0.12) 0%, transparent 60%);
     }
     .hero-content { position: relative; z-index: 1; }
     .hero-badge {
       display: inline-block;
-      background: rgba(75,0,130,0.4);
-      border: 1px solid rgba(150,0,255,0.4);
-      color: #c084fc;
+      background: rgba(78,22,87,0.5);
+      border: 1px solid rgba(96,191,2,0.4);
+      color: #60bf02;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       padding: 6px 16px;
@@ -54,7 +55,7 @@
       margin-bottom: 12px;
       letter-spacing: -1px;
     }
-    .hero h1 span { color: #c084fc; }
+    .hero h1 span { color: #60bf02; }
     .hero-meta {
       display: flex;
       justify-content: center;
@@ -62,7 +63,7 @@
       flex-wrap: wrap;
       margin-top: 24px;
       font-size: 14px;
-      color: #94a3b8;
+      color: #b0b0b0;
     }
     .hero-meta span { display: flex; align-items: center; gap: 6px; }
 
@@ -79,8 +80,8 @@
       gap: 10px;
     }
     .section-title .icon { font-size: 24px; }
-    .section-subtitle { color: #94a3b8; font-size: 15px; margin-bottom: 32px; }
-    .divider { border: none; border-top: 1px solid #1e1e3a; margin: 0; }
+    .section-subtitle { color: #b0b0b0; font-size: 15px; margin-bottom: 32px; }
+    .divider { border: none; border-top: 1px solid #2B2B2B; margin: 0; }
 
     /* ── KPI Cards ── */
     .kpi-grid {
@@ -90,8 +91,8 @@
       margin-bottom: 40px;
     }
     .kpi-card {
-      background: #13131f;
-      border: 1px solid #1e1e3a;
+      background: #181818;
+      border: 1px solid #2B2B2B;
       border-radius: 16px;
       padding: 24px 20px;
       text-align: center;
@@ -99,31 +100,31 @@
       overflow: hidden;
       transition: transform 0.2s, border-color 0.2s;
     }
-    .kpi-card:hover { transform: translateY(-2px); border-color: #2e2e5a; }
+    .kpi-card:hover { transform: translateY(-2px); border-color: #60bf02; }
     .kpi-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 3px;
     }
-    .kpi-card.green::before { background: linear-gradient(90deg, #22c55e, #4ade80); }
-    .kpi-card.red::before   { background: linear-gradient(90deg, #ef4444, #f87171); }
-    .kpi-card.yellow::before{ background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-    .kpi-card.blue::before  { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-    .kpi-card.purple::before{ background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+    .kpi-card.green::before  { background: linear-gradient(90deg, #60bf02, #82d91a); }
+    .kpi-card.red::before    { background: linear-gradient(90deg, #e93a24, #ff6247); }
+    .kpi-card.yellow::before { background: linear-gradient(90deg, #e17a00, #ffaa33); }
+    .kpi-card.blue::before   { background: linear-gradient(90deg, #4e1657, #7a2d8a); }
+    .kpi-card.purple::before { background: linear-gradient(90deg, #611c6c, #9a3aaa); }
     .kpi-value {
       font-size: 48px;
       font-weight: 800;
       line-height: 1;
       margin-bottom: 8px;
     }
-    .kpi-card.green .kpi-value { color: #4ade80; }
-    .kpi-card.red   .kpi-value { color: #f87171; }
-    .kpi-card.yellow.kpi-value { color: #fbbf24; }
-    .kpi-card.blue  .kpi-value { color: #60a5fa; }
-    .kpi-card.purple .kpi-value{ color: #a78bfa; }
-    .kpi-label { font-size: 13px; color: #94a3b8; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
-    .kpi-sub   { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+    .kpi-card.green  .kpi-value { color: #60bf02; }
+    .kpi-card.red    .kpi-value { color: #e93a24; }
+    .kpi-card.yellow .kpi-value { color: #e17a00; }
+    .kpi-card.blue   .kpi-value { color: #9a3aaa; }
+    .kpi-card.purple .kpi-value { color: #b0b0b0; }
+    .kpi-label { font-size: 13px; color: #b0b0b0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .kpi-sub   { font-size: 12px; color: #b0b0b0; margin-top: 4px; }
 
     /* ── Charts Row ── */
     .charts-row {
@@ -134,12 +135,12 @@
     }
     @media (max-width: 700px) { .charts-row { grid-template-columns: 1fr; } }
     .chart-card {
-      background: #13131f;
-      border: 1px solid #1e1e3a;
+      background: #181818;
+      border: 1px solid #2B2B2B;
       border-radius: 16px;
       padding: 28px;
     }
-    .chart-card h3 { font-size: 15px; font-weight: 600; color: #cbd5e1; margin-bottom: 20px; }
+    .chart-card h3 { font-size: 15px; font-weight: 600; color: #E5E5E5; margin-bottom: 20px; }
     .chart-wrap { position: relative; height: 260px; }
 
     /* ── Category Table ── */
@@ -147,42 +148,42 @@
     .cat-table th {
       text-align: left;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: #94a3b8;
+      color: #b0b0b0;
       padding: 10px 16px;
-      border-bottom: 1px solid #1e1e3a;
+      border-bottom: 1px solid #2B2B2B;
     }
     .cat-table td {
       padding: 14px 16px;
       font-size: 15px;
-      border-bottom: 1px solid #0f0f1a;
+      border-bottom: 1px solid #181818;
     }
-    .cat-table tr:hover td { background: #0d0d1a; }
-    .cat-table .cat-name { font-weight: 600; color: #e2e8f0; }
+    .cat-table tr:hover td { background: #1E1E1E; }
+    .cat-table .cat-name { font-weight: 600; color: #E5E5E5; }
 
     .pill {
       display: inline-flex;
       align-items: center;
       gap: 4px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       padding: 3px 10px;
       border-radius: 20px;
     }
-    .pill.impl  { background: rgba(34,197,94,0.15);  color: #4ade80; }
-    .pill.miss  { background: rgba(239,68,68,0.15);   color: #f87171; }
-    .pill.part  { background: rgba(245,158,11,0.15);  color: #fbbf24; }
-    .pill.tba   { background: rgba(100,116,139,0.15); color: #94a3b8; }
+    .pill.impl  { background: rgba(96,191,2,0.15);   color: #60bf02; }
+    .pill.miss  { background: rgba(233,58,36,0.15);  color: #e93a24; }
+    .pill.part  { background: rgba(225,122,0,0.15);  color: #e17a00; }
+    .pill.tba   { background: rgba(176,176,176,0.1); color: #b0b0b0; }
 
     /* Progress bar */
     .progress-wrap { display: flex; gap: 2px; height: 8px; border-radius: 4px; overflow: hidden; flex: 1; min-width: 120px; }
     .progress-seg { height: 100%; }
-    .progress-seg.impl  { background: #22c55e; }
-    .progress-seg.miss  { background: #ef4444; }
-    .progress-seg.part  { background: #f59e0b; }
-    .progress-seg.tba   { background: #334155; }
+    .progress-seg.impl  { background: #60bf02; }
+    .progress-seg.miss  { background: #e93a24; }
+    .progress-seg.part  { background: #e17a00; }
+    .progress-seg.tba   { background: #454545; }
 
     /* ── Critical Findings ── */
     .findings-grid {
@@ -191,8 +192,8 @@
       gap: 16px;
     }
     .finding-card {
-      background: #13131f;
-      border: 1px solid #1e1e3a;
+      background: #181818;
+      border: 1px solid #2B2B2B;
       border-radius: 12px;
       padding: 20px;
       display: flex;
@@ -200,7 +201,7 @@
       align-items: flex-start;
       transition: border-color 0.2s;
     }
-    .finding-card:hover { border-color: #2e2e5a; }
+    .finding-card:hover { border-color: #60bf02; }
     .finding-icon {
       font-size: 22px;
       flex-shrink: 0;
@@ -211,10 +212,10 @@
       justify-content: center;
       border-radius: 10px;
     }
-    .finding-icon.critical { background: rgba(239,68,68,0.15); }
-    .finding-icon.high     { background: rgba(249,115,22,0.15); }
-    .finding-body h4 { font-size: 15px; font-weight: 600; color: #e2e8f0; margin-bottom: 4px; }
-    .finding-body p  { font-size: 14px; color: #94a3b8; line-height: 1.5; }
+    .finding-icon.critical { background: rgba(233,58,36,0.15); }
+    .finding-icon.high     { background: rgba(225,122,0,0.15); }
+    .finding-body h4 { font-size: 15px; font-weight: 600; color: #E5E5E5; margin-bottom: 4px; }
+    .finding-body p  { font-size: 14px; color: #b0b0b0; line-height: 1.5; }
     .finding-tag {
       display: inline-block;
       font-size: 10px;
@@ -225,9 +226,9 @@
       border-radius: 4px;
       margin-bottom: 6px;
     }
-    .finding-tag.critical { background: rgba(239,68,68,0.2); color: #f87171; }
-    .finding-tag.high     { background: rgba(249,115,22,0.2); color: #fb923c; }
-    .finding-tag.wcag     { background: rgba(99,102,241,0.2); color: #a5b4fc; margin-left: 4px; }
+    .finding-tag.critical { background: rgba(233,58,36,0.2);  color: #e93a24; }
+    .finding-tag.high     { background: rgba(225,122,0,0.2);  color: #e17a00; }
+    .finding-tag.wcag     { background: rgba(78,22,87,0.3);   color: #d580e0; margin-left: 4px; }
 
     /* ── Time Comparison ── */
     .time-grid {
@@ -237,22 +238,22 @@
     }
     @media (max-width: 600px) { .time-grid { grid-template-columns: 1fr; } }
     .time-card {
-      background: #13131f;
-      border: 1px solid #1e1e3a;
+      background: #181818;
+      border: 1px solid #2B2B2B;
       border-radius: 16px;
       padding: 28px;
     }
     .time-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 20px; }
     .time-card h3 span { font-size: 28px; font-weight: 800; display: block; margin-top: 4px; }
-    .time-card.auto h3 span { color: #4ade80; }
-    .time-card.manual h3 span { color: #f87171; }
-    .time-phase { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #1a1a2e; font-size: 15px; }
+    .time-card.auto h3 span   { color: #60bf02; }
+    .time-card.manual h3 span { color: #e93a24; }
+    .time-phase { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #232323; font-size: 15px; }
     .time-phase:last-child { border-bottom: none; }
-    .time-phase .label { color: #b0bcd0; }
-    .time-phase .val   { font-weight: 600; color: #e2e8f0; }
+    .time-phase .label { color: #b0b0b0; }
+    .time-phase .val   { font-weight: 700; color: #E5E5E5; }
     .time-save-banner {
-      background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(16,185,129,0.1));
-      border: 1px solid rgba(34,197,94,0.2);
+      background: linear-gradient(135deg, rgba(96,191,2,0.1), rgba(66,132,0,0.1));
+      border: 1px solid rgba(96,191,2,0.25);
       border-radius: 12px;
       padding: 20px 24px;
       margin-top: 24px;
@@ -260,34 +261,34 @@
       align-items: center;
       gap: 16px;
     }
-    .time-save-banner .big { font-size: 40px; font-weight: 800; color: #4ade80; }
-    .time-save-banner p   { font-size: 14px; color: #94a3b8; }
-    .time-save-banner strong { color: #e2e8f0; }
+    .time-save-banner .big { font-size: 40px; font-weight: 800; color: #60bf02; }
+    .time-save-banner p   { font-size: 14px; color: #b0b0b0; }
+    .time-save-banner strong { color: #E5E5E5; }
 
     /* ── Pros / Cons ── */
     .procon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     @media (max-width: 600px) { .procon-grid { grid-template-columns: 1fr; } }
     .procon-card {
-      background: #13131f;
-      border: 1px solid #1e1e3a;
+      background: #181818;
+      border: 1px solid #2B2B2B;
       border-radius: 16px;
       padding: 28px;
     }
     .procon-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-    .procon-card.pros h3 { color: #4ade80; }
-    .procon-card.cons h3 { color: #f87171; }
+    .procon-card.pros h3 { color: #60bf02; }
+    .procon-card.cons h3 { color: #e93a24; }
     .procon-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
     .procon-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
-    .pros .procon-dot { background: #4ade80; }
-    .cons .procon-dot { background: #f87171; }
-    .procon-item p { font-size: 15px; color: #94a3b8; line-height: 1.5; }
-    .procon-item strong { color: #e2e8f0; display: block; margin-bottom: 2px; }
+    .pros .procon-dot { background: #60bf02; }
+    .cons .procon-dot { background: #e93a24; }
+    .procon-item p { font-size: 15px; color: #b0b0b0; line-height: 1.5; }
+    .procon-item strong { color: #E5E5E5; display: block; margin-bottom: 2px; }
 
     /* ── Sprint Roadmap ── */
     .sprint-list { display: flex; flex-direction: column; gap: 16px; }
     .sprint-card {
-      background: #13131f;
-      border: 1px solid #1e1e3a;
+      background: #181818;
+      border: 1px solid #2B2B2B;
       border-radius: 12px;
       padding: 20px 24px;
       display: flex;
@@ -301,43 +302,45 @@
       font-weight: 800; font-size: 15px;
       flex-shrink: 0;
     }
-    .sprint-card:nth-child(1) .sprint-num { background: rgba(239,68,68,0.2);  color: #f87171; }
-    .sprint-card:nth-child(2) .sprint-num { background: rgba(249,115,22,0.2); color: #fb923c; }
-    .sprint-card:nth-child(3) .sprint-num { background: rgba(234,179,8,0.2);  color: #fbbf24; }
-    .sprint-body h4 { font-size: 15px; font-weight: 600; color: #e2e8f0; margin-bottom: 6px; }
-    .sprint-body p  { font-size: 14px; color: #94a3b8; }
+    .sprint-card:nth-child(1) .sprint-num { background: rgba(233,58,36,0.2);  color: #e93a24; }
+    .sprint-card:nth-child(2) .sprint-num { background: rgba(225,122,0,0.2);  color: #e17a00; }
+    .sprint-card:nth-child(3) .sprint-num { background: rgba(96,191,2,0.2);   color: #60bf02; }
+    .sprint-body h4 { font-size: 15px; font-weight: 600; color: #E5E5E5; margin-bottom: 6px; }
+    .sprint-body p  { font-size: 14px; color: #b0b0b0; }
     .sprint-items   { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
     .sprint-item {
       font-size: 12px;
-      background: #1a1a2e;
-      border: 1px solid #2a2a4a;
+      background: #232323;
+      border: 1px solid #343434;
       border-radius: 6px;
       padding: 4px 10px;
-      color: #94a3b8;
+      color: #b0b0b0;
     }
 
     /* ── Interesting observations ── */
     .obs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
     .obs-card {
-      background: #13131f;
-      border: 1px solid #1e1e3a;
+      background: #181818;
+      border: 1px solid #2B2B2B;
       border-radius: 12px;
       padding: 22px;
+      transition: border-color 0.2s;
     }
+    .obs-card:hover { border-color: #60bf02; }
     .obs-card .obs-icon { font-size: 28px; margin-bottom: 12px; }
-    .obs-card h4 { font-size: 15px; font-weight: 700; color: #e2e8f0; margin-bottom: 8px; }
-    .obs-card p  { font-size: 14px; color: #94a3b8; line-height: 1.6; }
+    .obs-card h4 { font-size: 15px; font-weight: 700; color: #E5E5E5; margin-bottom: 8px; }
+    .obs-card p  { font-size: 14px; color: #b0b0b0; line-height: 1.6; }
 
     /* ── Footer ── */
     .footer {
-      background: #0a0a14;
-      border-top: 1px solid #1e1e3a;
+      background: #000000;
+      border-top: 1px solid #2B2B2B;
       padding: 32px 40px;
       text-align: center;
       font-size: 14px;
-      color: #94a3b8;
+      color: #b0b0b0;
     }
-    .footer strong { color: #b0bcd0; }
+    .footer strong { color: #E5E5E5; }
   </style>
 </head>
 <body>
@@ -347,10 +350,10 @@
   <div class="hero-content">
     <div class="hero-badge">Accessibility Audit</div>
     <h1>TELUS <span>TV+</span> Keyboard Accessibility</h1>
-    <p style="color:#94a3b8; font-size:16px; max-width:580px; margin:0 auto;">
+    <p style="color:#b0b0b0; font-size:16px; max-width:580px; margin:0 auto; font-family:'Lato',sans-serif;">
       A hybrid automated + manual audit of keyboard interactions across 11 UI categories.
     </p>
-    <div style="display:block; max-width:1200px; margin:20px auto 0; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); border-radius:10px; padding:14px 24px; font-size:15px; color:#93c5fd; text-align:center;">
+    <div style="display:block; max-width:1200px; margin:20px auto 0; background:rgba(96,191,2,0.08); border:1px solid rgba(96,191,2,0.3); border-radius:10px; padding:14px 24px; font-size:15px; color:#a8d880; text-align:center;">
       <strong>📌 Scope:</strong> This audit covers <strong>keyboard accessibility and shortcuts only</strong> — focus management, Tab order, and key interactions. Screen reader compatibility (VoiceOver, NVDA) and visual/colour contrast are outside the scope of this audit.
     </div>
     <div class="hero-meta">
@@ -358,7 +361,7 @@
       <span>👤 Lais Arata</span>
       <span>🔬 Playwright + Manual</span>
       <span>📋 75 test cases</span>
-      <span>📊 <a href="https://docs.google.com/spreadsheets/d/1YFTstmRE0yygWlmBF-MFAg25GsMxJjEh/edit?usp=sharing&ouid=106887795484926809904&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" style="color:#4fc3f7; text-decoration:none; border-bottom:1px solid rgba(79,195,247,0.3);">View Spreadsheet</a></span>
+      <span>📊 <a href="https://docs.google.com/spreadsheets/d/1YFTstmRE0yygWlmBF-MFAg25GsMxJjEh/edit?usp=sharing&ouid=106887795484926809904&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" style="color:#60bf02; text-decoration:none; border-bottom:1px solid rgba(96,191,2,0.3);">View Spreadsheet</a></span>
     </div>
   </div>
 </div>
@@ -371,7 +374,7 @@
     <div class="section-subtitle">Overall results across all 11 categories and 75 keyboard interactions tested.</div>
     <div class="kpi-grid">
       <div class="kpi-card purple">
-        <div class="kpi-value" style="color:#a78bfa">75</div>
+        <div class="kpi-value" style="color:#b0b0b0">75</div>
         <div class="kpi-label">Total Tests</div>
         <div class="kpi-sub">11 categories</div>
       </div>
@@ -386,12 +389,12 @@
         <div class="kpi-sub">48% of tests</div>
       </div>
       <div class="kpi-card yellow">
-        <div class="kpi-value" style="color:#fbbf24">3</div>
+        <div class="kpi-value" style="color:#e17a00">3</div>
         <div class="kpi-label">Partial</div>
         <div class="kpi-sub">4% of tests</div>
       </div>
       <div class="kpi-card blue">
-        <div class="kpi-value" style="color:#60a5fa">9</div>
+        <div class="kpi-value" style="color:#9a3aaa">9</div>
         <div class="kpi-label">Critical Issues</div>
         <div class="kpi-sub">Immediate action</div>
       </div>
@@ -403,7 +406,7 @@
         <h3>Overall Results Distribution</h3>
         <div class="chart-wrap">
           <canvas id="donutChart" role="img" aria-label="Donut chart showing overall results: 28 Implemented (37%), 36 Missing (48%), 3 Partial (4%), 8 To Be Audited (11%)"></canvas>
-          <p style="text-align:center; font-size:13px; color:#94a3b8; margin-top:12px;">28 Implemented · 36 Missing · 3 Partial · 8 To Be Audited</p>
+          <p style="text-align:center; font-size:13px; color:#b0b0b0; margin-top:12px;">28 Implemented · 36 Missing · 3 Partial · 8 To Be Audited</p>
         </div>
       </div>
       <div class="chart-card">
@@ -421,7 +424,7 @@
   <div class="section">
     <div class="section-title"><span class="icon">📂</span> Category Breakdown</div>
     <div class="section-subtitle">Implemented vs Missing vs Partial per category.</div>
-    <div style="background:#13131f; border:1px solid #1e1e3a; border-radius:16px; overflow:hidden;">
+    <div style="background:#181818; border:1px solid #2B2B2B; border-radius:16px; overflow:hidden;">
       <table class="cat-table">
         <thead>
           <tr>
@@ -555,7 +558,7 @@
         <div class="time-phase"><span class="label">75 tests × ~10 min each</span><span class="val">12.5 h</span></div>
         <div class="time-phase"><span class="label">WCAG refs, severity & fix recommendations</span><span class="val">10 h</span></div>
         <div class="time-phase"><span class="label">Final report write-up</span><span class="val">3 h</span></div>
-        <div class="time-phase" style="color:#94a3b8; font-size:13px; font-style:italic;"><span class="label">* Could reach 40–45 h for a first-time auditor</span><span class="val"></span></div>
+        <div class="time-phase" style="color:#b0b0b0; font-size:13px; font-style:italic;"><span class="label">* Could reach 40–45 h for a first-time auditor</span><span class="val"></span></div>
       </div>
     </div>
 
@@ -726,8 +729,8 @@
       labels: ['Implemented', 'Missing', 'Partial', 'To Be Audited'],
       datasets: [{
         data: [28, 36, 3, 8],
-        backgroundColor: ['#22c55e','#ef4444','#f59e0b','#475569'],
-        borderColor: '#13131f',
+        backgroundColor: ['#60bf02','#e93a24','#e17a00','#454545'],
+        borderColor: '#181818',
         borderWidth: 3,
         hoverOffset: 8,
       }]
@@ -738,7 +741,7 @@
       plugins: {
         legend: {
           position: 'bottom',
-          labels: { color: '#94a3b8', padding: 16, font: { size: 12 }, boxWidth: 12, borderRadius: 4 }
+          labels: { color: '#b0b0b0', padding: 16, font: { size: 12 }, boxWidth: 12, borderRadius: 4 }
         },
         tooltip: {
           callbacks: {
@@ -760,9 +763,9 @@
     data: {
       labels: categories.map(c => c.name),
       datasets: [
-        { label: 'Implemented', data: categories.map(c => c.impl), backgroundColor: '#22c55e', borderRadius: 3 },
-        { label: 'Missing',     data: categories.map(c => c.miss), backgroundColor: '#ef4444', borderRadius: 3 },
-        { label: 'Partial',     data: categories.map(c => c.part), backgroundColor: '#f59e0b', borderRadius: 3 },
+        { label: 'Implemented', data: categories.map(c => c.impl), backgroundColor: '#60bf02', borderRadius: 3 },
+        { label: 'Missing',     data: categories.map(c => c.miss), backgroundColor: '#e93a24', borderRadius: 3 },
+        { label: 'Partial',     data: categories.map(c => c.part), backgroundColor: '#e17a00', borderRadius: 3 },
       ]
     },
     options: {
@@ -770,18 +773,18 @@
       scales: {
         x: {
           stacked: true,
-          ticks: { color: '#94a3b8', font: { size: 10 }, maxRotation: 35 },
-          grid: { color: '#1a1a2e' }
+          ticks: { color: '#b0b0b0', font: { size: 10 }, maxRotation: 35 },
+          grid: { color: '#2B2B2B' }
         },
         y: {
           stacked: true,
-          ticks: { color: '#94a3b8', stepSize: 2 },
-          grid: { color: '#1a1a2e' }
+          ticks: { color: '#b0b0b0', stepSize: 2 },
+          grid: { color: '#2B2B2B' }
         }
       },
       plugins: {
         legend: {
-          labels: { color: '#94a3b8', font: { size: 12 }, boxWidth: 12, borderRadius: 4 }
+          labels: { color: '#b0b0b0', font: { size: 12 }, boxWidth: 12, borderRadius: 4 }
         },
         datalabels: {
           color: '#fff',
@@ -816,7 +819,7 @@
               <div class="progress-seg part"  style="width:${pPart}%"></div>
               <div class="progress-seg tba"   style="width:${pTba}%"></div>
             </div>
-            <span style="font-size:12px;color:#94a3b8">${pImpl}%</span>
+            <span style="font-size:12px;color:#b0b0b0">${pImpl}%</span>
           </div>
         </td>
       </tr>`;
