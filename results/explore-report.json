@@ -1,0 +1,440 @@
+{
+  "home": {
+    "url": "https://telustvplus.com/#/PAGE/1690",
+    "finalUrl": "https://telustvplus.com/#/PAGE/1690",
+    "elements": []
+  },
+  "guide": {
+    "url": "https://telustvplus.com/#/guide",
+    "finalUrl": "https://telustvplus.com/#/guide",
+    "elements": [
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "hubs-dropdown",
+        "text": "Guide",
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "imageButton search-icon",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "sc-imAgHg grbsVh avatar-button profile-menu-avatar ",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "sc-fpEFIB jaQzER",
+        "text": "Next",
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "imageButton ",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": "logo-wrapper",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "a[href]"
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "a[href]"
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": "selected",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "a[href]"
+      },
+      {
+        "tag": "input",
+        "role": null,
+        "id": null,
+        "class": "search-input",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "input"
+      },
+      {
+        "tag": "input",
+        "role": null,
+        "id": null,
+        "class": "sc-hWwHby gcTKRS",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "input"
+      },
+      {
+        "tag": "div",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": "Today\n9:00 AM\n9:30 AM\n10:00 AM\n10:30 AM\n",
+        "ariaLabel": null,
+        "tabindex": "-1",
+        "selector": "[tabindex]"
+      }
+    ]
+  },
+  "search": {
+    "url": "https://telustvplus.com/#/search",
+    "finalUrl": "https://telustvplus.com/#/search",
+    "elements": [
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "hubs-dropdown",
+        "text": "Menu",
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "imageButton search-icon",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "sc-imAgHg grbsVh avatar-button profile-menu-avatar ",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": "logo-wrapper",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "a[href]"
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "a[href]"
+      },
+      {
+        "tag": "input",
+        "role": null,
+        "id": null,
+        "class": "search-input",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "input"
+      }
+    ]
+  },
+  "settings": {
+    "url": "https://telustvplus.com/#/settings",
+    "finalUrl": "https://telustvplus.com/#/settings",
+    "elements": [
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "hubs-dropdown",
+        "text": "Menu",
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "imageButton search-icon",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "sc-imAgHg grbsVh avatar-button profile-menu-avatar active",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "button"
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": "logo-wrapper",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "a[href]"
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "a[href]"
+      },
+      {
+        "tag": "input",
+        "role": null,
+        "id": null,
+        "class": "search-input",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "input"
+      },
+      {
+        "tag": "input",
+        "role": null,
+        "id": null,
+        "class": "sc-fmMLgT bDLXA",
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "input"
+      },
+      {
+        "tag": "input",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null,
+        "tabindex": null,
+        "selector": "input"
+      }
+    ]
+  },
+  "detail": {
+    "url": "https://telustvplus.com/#/detail/series/PAGE/DETAILS/TVSHOW/e35a0ca8-180f-49a6-88c4-dc2ccb52ed65",
+    "elements": [
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": "logo-wrapper",
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "hubs-dropdown",
+        "text": "Menu",
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "imageButton search-icon",
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "sc-imAgHg grbsVh avatar-button profile-menu-avatar ",
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "imageButton ",
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "button",
+        "role": null,
+        "id": null,
+        "class": "imageButton wall-content-icon",
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": "details-link",
+        "text": "Details",
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": "details-link",
+        "text": "Details",
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": "details-link",
+        "text": "Details",
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": "details-link",
+        "text": "Details",
+        "ariaLabel": null
+      },
+      {
+        "tag": "a",
+        "role": null,
+        "id": null,
+        "class": null,
+        "text": null,
+        "ariaLabel": null
+      }
+    ]
+  }
+}

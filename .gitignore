@@ -1,0 +1,11 @@
+.env
+screenshots/
+node_modules/
+playwright-report/
+test-results/
+.DS_Store
+.claude/
+test-results.json
+scripts/auth/auth-state.json
+.DS_Store
+.claude/

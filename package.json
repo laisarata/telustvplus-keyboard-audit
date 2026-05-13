@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:ui": "npx playwright test --ui",
+    "test:a11y": "npx playwright test tests/a11y.spec.ts",
+    "report": "npx playwright show-report"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "@playwright/test": "^1.59.1"
+  }
+}

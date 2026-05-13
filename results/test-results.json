@@ -1,0 +1,642 @@
+[
+  {
+    "category": "Global Navigation",
+    "shortcut": "Tab",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Global Navigation",
+    "shortcut": "Shift+Tab",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Global Navigation",
+    "shortcut": "Skip Navigation Link",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "First Tab focus did not land on a skip-to-main-content link",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Global Navigation",
+    "shortcut": "Esc (Escape)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Could not verify Esc closes open menu opened via keyboard — manual check needed",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Global Navigation",
+    "shortcut": "F6",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Global Navigation",
+    "shortcut": "Alt+Left / Alt+Right",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Browser back shortcut appears to be intercepted or not working",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Global Navigation",
+    "shortcut": "? or Shift+?",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "No keyboard shortcuts overlay appeared after pressing ?",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Authentication",
+    "shortcut": "Tab / Shift+Tab",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "⚠️ MANUAL TEST REQUIRED on a logged-out session — Tab through all form fields (email, password, login button, forgot password link) and verify focus order is logical.",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Authentication",
+    "shortcut": "Enter / Return",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "⚠️ MANUAL TEST REQUIRED on a logged-out session — Fill in email and password fields using keyboard, then press Enter and confirm the form submits.",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Content Browse & Carousels",
+    "shortcut": "Tab / Shift+Tab",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Content Browse & Carousels",
+    "shortcut": "Left / Right Arrow",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Arrow keys did not move focus between carousel items",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Content Browse & Carousels",
+    "shortcut": "Enter / Return",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Content Browse & Carousels",
+    "shortcut": "Home / End",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Home/End keys did not jump to first/last carousel item",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Search",
+    "shortcut": "Tab",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Search",
+    "shortcut": "Arrow keys",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "Tab moves focus from search input into result cards",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Search",
+    "shortcut": "Enter / Return",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Search",
+    "shortcut": "Esc (Escape)",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "Esc navigated away from search page",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Left Arrow",
+    "status": "Partial",
+    "currentBehavior": null,
+    "notes": "Left arrow did not visibly move focus in the grid — verify manually",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Right Arrow",
+    "status": "Partial",
+    "currentBehavior": null,
+    "notes": "Right arrow did not visibly move focus in the grid — verify manually",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Up Arrow",
+    "status": "Partial",
+    "currentBehavior": null,
+    "notes": "Up arrow did not visibly move focus in the grid — verify manually",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Down Arrow",
+    "status": "Partial",
+    "currentBehavior": null,
+    "notes": "Down arrow did not visibly move focus in the grid — verify manually",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Tab / Shift+Tab",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Page Up / Page Down",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Home / End",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Home/End did not move focus in grid row",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Enter / Return",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Spacebar",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "N (Now)",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "N key did not jump the grid to current time",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "D (Day) / Alt+Right Arrow",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Content Detail Page",
+    "shortcut": "Tab / Shift+Tab",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "Tab reaches content area after 7 presses",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Content Detail Page",
+    "shortcut": "Enter / Return",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "Enter activated the focused content button",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Content Detail Page",
+    "shortcut": "Arrow keys",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Arrow keys did not navigate between tabs on detail page",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "Spacebar",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "K",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "Left / Right Arrow",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "J",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "L",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "Up / Down Arrow",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "M (Mute)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "F (Full Screen)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "T (Theater mode)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "C (Captions)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "+ / - (Caption size)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "V or D (Described Video)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "0–9 (Number keys)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "Shift+, / Shift+.",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "Shift+N / Shift+P",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "Esc (Escape)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Media Player",
+    "shortcut": "Tab (player controls)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Video not playing — auth may have expired or concurrent stream limit reached",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Contextual Menu",
+    "shortcut": "Context Menu key or Shift+F10",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "Context Menu key / Shift+F10 opened the contextual menu",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Contextual Menu",
+    "shortcut": "Up / Down Arrow",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Arrow Down did not move focus between menu items",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Contextual Menu",
+    "shortcut": "Enter / Return",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Enter did not activate the menu item or close the menu",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Contextual Menu",
+    "shortcut": "Esc (Escape)",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Esc did not close the contextual menu",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Contextual Menu",
+    "shortcut": "Tab (inside menu)",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Tab kept focus inside the menu instead of closing it",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Modals & Overlays",
+    "shortcut": "Esc (Escape)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Could not open a modal via keyboard to test Esc — manual verification needed",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Modals & Overlays",
+    "shortcut": "Tab / Shift+Tab (focus trap)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Could not open a modal via keyboard to test focus trap",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Modals & Overlays",
+    "shortcut": "Enter / Return",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "Could not open a modal via keyboard to test Enter",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Account & Settings",
+    "shortcut": "Tab / Shift+Tab",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Account & Settings",
+    "shortcut": "Enter / Return",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Enter did not activate focused settings control",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Account & Settings",
+    "shortcut": "Arrow keys",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Account & Settings",
+    "shortcut": "Spacebar",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Contextual Menu (Guide)",
+    "shortcut": "Context Menu key or Shift+F10",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Guide contextual menu is mouse-only (right-click). Keyboard ContextMenu key not supported.",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Contextual Menu (Guide)",
+    "shortcut": "Up / Down Arrow",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Guide contextual menu is mouse-only (right-click). Keyboard ContextMenu key not supported.",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Contextual Menu (Guide)",
+    "shortcut": "Enter / Return",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Guide contextual menu is mouse-only (right-click). Keyboard ContextMenu key not supported.",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Contextual Menu (Guide)",
+    "shortcut": "Esc (Escape)",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Guide contextual menu is mouse-only (right-click). Keyboard ContextMenu key not supported.",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Contextual Menu (Guide)",
+    "shortcut": "Tab (inside menu)",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Guide contextual menu is mouse-only (right-click). Keyboard ContextMenu key not supported.",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Tooltip / Tutorial Overlay",
+    "shortcut": "Esc (Escape)",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Esc did not dismiss the tooltip — keyboard users cannot close it this way",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Tooltip / Tutorial Overlay",
+    "shortcut": "Tab (reach buttons)",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Tooltip / Tutorial Overlay",
+    "shortcut": "Enter (activate button)",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "",
+    "lastTested": "2026-05-05"
+  },
+  {
+    "category": "Global Navigation",
+    "shortcut": "Enter / Space (open menu)",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Enter and Space did not open the navigation dropdown menu",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Authentication",
+    "shortcut": "Focus on page load",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "⚠️ MANUAL TEST REQUIRED on a logged-out session — Open the login page and check whether the email field receives focus automatically — without pressing Tab.",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Authentication",
+    "shortcut": "Space / Enter (login button)",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "⚠️ MANUAL TEST REQUIRED on a logged-out session — Tab to the Login/Sign In button and press Space or Enter — confirm the form submits without using a mouse click.",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Authentication",
+    "shortcut": "Error message accessibility",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "⚠️ MANUAL TEST REQUIRED on a logged-out session — Submit the form with wrong credentials and verify the error message is visible and reachable by keyboard (focus moves to error, or it is announced via aria-live).",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Authentication",
+    "shortcut": "Forgot password link",
+    "status": "To Be Audited",
+    "currentBehavior": null,
+    "notes": "⚠️ MANUAL TEST REQUIRED on a logged-out session — Tab through the login form and verify the \"Forgot password?\" link is reachable and activatable with Enter.",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Filter — Tab",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "Filter button is reachable via Tab",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Filter — Enter/Space",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Filter button not reachable via Tab — cannot test open behaviour",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Filter — Arrow keys",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Filter button not reachable via Tab — cannot test arrow key navigation",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "EPG / TV Guide Grid",
+    "shortcut": "Filter — Esc",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Filter button not reachable via Tab — cannot test Esc behaviour",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Content Detail Page",
+    "shortcut": "Spacebar",
+    "status": "Implemented",
+    "currentBehavior": "Works as expected",
+    "notes": "Spacebar toggled the Watchlist button",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Content Detail Page",
+    "shortcut": "Esc (Escape)",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Esc did NOT dismiss the \"More\" popup — keyboard users are trapped inside (must use mouse to close)",
+    "lastTested": "2026-05-04"
+  },
+  {
+    "category": "Content Detail Page",
+    "shortcut": "Focus on page load",
+    "status": "Missing",
+    "currentBehavior": "Not implemented",
+    "notes": "Focus lands on BODY on page load — screen reader users get no context about the page content",
+    "lastTested": "2026-05-04"
+  }
+]
