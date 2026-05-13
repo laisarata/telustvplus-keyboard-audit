@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TELUS TV+ Keyboard Accessibility Audit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #0B0B0B;
+      color: #E5E5E5;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #0f0a14 0%, #0B0B0B 50%, #0a120a 100%);
+      padding: 60px 40px;
+      text-align: center;
+      border-bottom: 1px solid #2B2B2B;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(78,22,87,0.35) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 50%, rgba(96,191,2,0.12) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(78,22,87,0.5);
+      border: 1px solid rgba(96,191,2,0.4);
+      color: #60bf02;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+    .hero h1 span { color: #60bf02; }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 14px;
+      color: #b0b0b0;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── Layout ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 48px 0; }
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title .icon { font-size: 24px; }
+    .section-subtitle { color: #b0b0b0; font-size: 15px; margin-bottom: 32px; }
+    .divider { border: none; border-top: 1px solid #2B2B2B; margin: 0; }
+
+    /* ── KPI Cards ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .kpi-card {
+      background: #181818;
+      border: 1px solid #2B2B2B;
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .kpi-card:hover { transform: translateY(-2px); border-color: #60bf02; }
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .kpi-card.green::before  { background: linear-gradient(90deg, #60bf02, #82d91a); }
+    .kpi-card.red::before    { background: linear-gradient(90deg, #e93a24, #ff6247); }
+    .kpi-card.yellow::before { background: linear-gradient(90deg, #e17a00, #ffaa33); }
+    .kpi-card.blue::before   { background: linear-gradient(90deg, #4e1657, #7a2d8a); }
+    .kpi-card.purple::before { background: linear-gradient(90deg, #611c6c, #9a3aaa); }
+    .kpi-value {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .kpi-card.green  .kpi-value { color: #60bf02; }
+    .kpi-card.red    .kpi-value { color: #e93a24; }
+    .kpi-card.yellow .kpi-value { color: #e17a00; }
+    .kpi-card.blue   .kpi-value { color: #9a3aaa; }
+    .kpi-card.purple .kpi-value { color: #b0b0b0; }
+    .kpi-label { font-size: 13px; color: #b0b0b0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .kpi-sub   { font-size: 12px; color: #b0b0b0; margin-top: 4px; }
+
+    /* ── Charts Row ── */
+    .charts-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 700px) { .charts-row { grid-template-columns: 1fr; } }
+    .chart-card {
+      background: #181818;
+      border: 1px solid #2B2B2B;
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .chart-card h3 { font-size: 15px; font-weight: 600; color: #E5E5E5; margin-bottom: 20px; }
+    .chart-wrap { position: relative; height: 260px; }
+
+    /* ── Category Table ── */
+    .cat-table { width: 100%; border-collapse: collapse; }
+    .cat-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #b0b0b0;
+      padding: 10px 16px;
+      border-bottom: 1px solid #2B2B2B;
+    }
+    .cat-table td {
+      padding: 14px 16px;
+      font-size: 15px;
+      border-bottom: 1px solid #181818;
+    }
+    .cat-table tr:hover td { background: #1E1E1E; }
+    .cat-table .cat-name { font-weight: 600; color: #E5E5E5; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .pill.impl  { background: rgba(96,191,2,0.15);   color: #60bf02; }
+    .pill.miss  { background: rgba(233,58,36,0.15);  color: #e93a24; }
+    .pill.part  { background: rgba(225,122,0,0.15);  color: #e17a00; }
+    .pill.tba   { background: rgba(176,176,176,0.1); color: #b0b0b0; }
+
+    /* Progress bar */
+    .progress-wrap { display: flex; gap: 2px; height: 8px; border-radius: 4px; overflow: hidden; flex: 1; min-width: 120px; }
+    .progress-seg { height: 100%; }
+    .progress-seg.impl  { background: #60bf02; }
+    .progress-seg.miss  { background: #e93a24; }
+    .progress-seg.part  { background: #e17a00; }
+    .progress-seg.tba   { background: #454545; }
+
+    /* ── Critical Findings ── */
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+    }
+    .finding-card {
+      background: #181818;
+      border: 1px solid #2B2B2B;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .finding-card:hover { border-color: #60bf02; }
+    .finding-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+    }
+    .finding-icon.critical { background: rgba(233,58,36,0.15); }
+    .finding-icon.high     { background: rgba(225,122,0,0.15); }
+    .finding-body h4 { font-size: 15px; font-weight: 600; color: #E5E5E5; margin-bottom: 4px; }
+    .finding-body p  { font-size: 14px; color: #b0b0b0; line-height: 1.5; }
+    .finding-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+    .finding-tag.critical { background: rgba(233,58,36,0.2);  color: #e93a24; }
+    .finding-tag.high     { background: rgba(225,122,0,0.2);  color: #e17a00; }
+    .finding-tag.wcag     { background: rgba(78,22,87,0.3);   color: #d580e0; margin-left: 4px; }
+    .finding-tag.en301    { background: rgba(0,100,180,0.2);  color: #60b8ff; margin-left: 4px; }
+    .finding-tag.crtc     { background: rgba(180,60,0,0.2);   color: #ff9955; margin-left: 4px; }
+
+    /* ── Time Comparison ── */
+    .time-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 600px) { .time-grid { grid-template-columns: 1fr; } }
+    .time-card {
+      background: #181818;
+      border: 1px solid #2B2B2B;
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .time-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 20px; }
+    .time-card h3 span { font-size: 28px; font-weight: 800; display: block; margin-top: 4px; }
+    .time-card.auto h3 span   { color: #60bf02; }
+    .time-card.manual h3 span { color: #e93a24; }
+    .time-phase { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #232323; font-size: 15px; }
+    .time-phase:last-child { border-bottom: none; }
+    .time-phase .label { color: #b0b0b0; }
+    .time-phase .val   { font-weight: 700; color: #E5E5E5; }
+    .time-save-banner {
+      background: linear-gradient(135deg, rgba(96,191,2,0.1), rgba(66,132,0,0.1));
+      border: 1px solid rgba(96,191,2,0.25);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .time-save-banner .big { font-size: 40px; font-weight: 800; color: #60bf02; }
+    .time-save-banner p   { font-size: 14px; color: #b0b0b0; }
+    .time-save-banner strong { color: #E5E5E5; }
+
+    /* ── Pros / Cons ── */
+    .procon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 600px) { .procon-grid { grid-template-columns: 1fr; } }
+    .procon-card {
+      background: #181818;
+      border: 1px solid #2B2B2B;
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .procon-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .procon-card.pros h3 { color: #60bf02; }
+    .procon-card.cons h3 { color: #e93a24; }
+    .procon-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .procon-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+    .pros .procon-dot { background: #60bf02; }
+    .cons .procon-dot { background: #e93a24; }
+    .procon-item p { font-size: 15px; color: #b0b0b0; line-height: 1.5; }
+    .procon-item strong { color: #E5E5E5; display: block; margin-bottom: 2px; }
+
+    /* ── Interesting observations ── */
+    .obs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .obs-card {
+      background: #181818;
+      border: 1px solid #2B2B2B;
+      border-radius: 12px;
+      padding: 22px;
+      transition: border-color 0.2s;
+    }
+    .obs-card:hover { border-color: #60bf02; }
+    .obs-card .obs-icon { font-size: 28px; margin-bottom: 12px; }
+    .obs-card h4 { font-size: 15px; font-weight: 700; color: #E5E5E5; margin-bottom: 8px; }
+    .obs-card p  { font-size: 14px; color: #b0b0b0; line-height: 1.6; }
+
+    /* ── Footer ── */
+    .footer {
+      background: #000000;
+      border-top: 1px solid #2B2B2B;
+      padding: 32px 40px;
+      text-align: center;
+      font-size: 14px;
+      color: #b0b0b0;
+    }
+    .footer strong { color: #E5E5E5; }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Accessibility Audit</div>
+    <h1>TELUS <span>TV+</span> Keyboard Accessibility</h1>
+    <p style="color:#b0b0b0; font-size:16px; max-width:580px; margin:0 auto; font-family:'Lato',sans-serif;">
+      A hybrid automated + manual audit of 82 interactions across 12 UI categories.
+    </p>
+    <div style="display:block; max-width:1200px; margin:20px auto 0; background:rgba(96,191,2,0.08); border:1px solid rgba(96,191,2,0.3); border-radius:10px; padding:14px 24px; font-size:15px; color:#a8d880; text-align:center;">
+      <strong>📌 Scope:</strong> This audit covers two areas: <strong>(1) keyboard accessibility</strong> — focus management, Tab order, and key interactions across 11 UI categories; and <strong>(2) media player accessibility</strong> — captions and audio description per CAN/ASC EN 301 549 Clause 7. All findings are mapped to Canadian legal obligations (AODA, ACA, CRTC). Screen reader compatibility and visual/colour contrast are outside scope.
+    </div>
+    <div class="hero-meta">
+      <span>📅 May 2026</span>
+      <span>👤 Lais Arata</span>
+      <span>🔬 Playwright + Manual</span>
+      <span>📋 82 test cases</span>
+      <span>📊 <a href="https://docs.google.com/spreadsheets/d/153jT5CfDpOSjkhWvfOGrXR4TMNkFpAo1/edit?usp=sharing&ouid=106887795484926809904&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" style="color:#60bf02; text-decoration:none; border-bottom:1px solid rgba(96,191,2,0.3);">View Spreadsheet</a></span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- KPIs -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span> At a Glance</div>
+    <div class="section-subtitle">Overall results across all 12 categories and 82 interactions tested — including CAN/ASC EN 301 549 Clause 7 (Media Player captions and audio description).</div>
+    <div class="kpi-grid">
+      <div class="kpi-card purple">
+        <div class="kpi-value" style="color:#b0b0b0">82</div>
+        <div class="kpi-label">Total Tests</div>
+        <div class="kpi-sub">12 categories</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-value">33</div>
+        <div class="kpi-label">Implemented</div>
+        <div class="kpi-sub">40% of tests</div>
+      </div>
+      <div class="kpi-card red">
+        <div class="kpi-value">44</div>
+        <div class="kpi-label">Missing</div>
+        <div class="kpi-sub">54% of tests</div>
+      </div>
+      <div class="kpi-card yellow">
+        <div class="kpi-value" style="color:#e17a00">2</div>
+        <div class="kpi-label">Partial</div>
+        <div class="kpi-sub">2% of tests</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="kpi-value" style="color:#9a3aaa">12</div>
+        <div class="kpi-label">Critical Issues</div>
+        <div class="kpi-sub">Immediate action</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-row">
+      <div class="chart-card">
+        <h3>Overall Results Distribution</h3>
+        <div class="chart-wrap">
+          <canvas id="donutChart" role="img" aria-label="Donut chart showing overall results: 33 Implemented (40%), 44 Missing (54%), 2 Partial (2%), 3 To Be Audited (4%)"></canvas>
+          <p style="text-align:center; font-size:13px; color:#b0b0b0; margin-top:12px;">33 Implemented · 44 Missing · 2 Partial · 3 To Be Audited</p>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3>Results by Category</h3>
+        <div class="chart-wrap">
+          <canvas id="barChart" role="img" aria-label="Stacked bar chart showing implemented vs missing results per category. EPG and Media Player have the most missing items (11 each). Authentication has the most implemented (5)."></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- CATEGORY TABLE -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📂</span> Category Breakdown</div>
+    <div class="section-subtitle">Implemented vs Missing vs Partial per category.</div>
+    <div style="background:#181818; border:1px solid #2B2B2B; border-radius:16px; overflow:hidden;">
+      <table class="cat-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>✅ Impl</th>
+            <th>❌ Missing</th>
+            <th>🟡 Partial</th>
+            <th>Progress</th>
+          </tr>
+        </thead>
+        <tbody id="catTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- CRITICAL FINDINGS -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🚨</span> Critical & High Findings</div>
+    <div class="section-subtitle">Issues requiring immediate attention — sorted by severity and user impact.</div>
+    <div class="findings-grid">
+
+      <div class="finding-card">
+        <div class="finding-icon critical">🚫</div>
+        <div class="finding-body">
+          <span class="finding-tag critical">Critical</span><span class="finding-tag wcag">SC 2.1.1 – Keyboard</span>
+          <h4>EPG Grid — Dead End</h4>
+          <p>Grid is reachable after 11 Tab presses but nothing inside it can be selected or activated. The entire TV Guide is view-only for keyboard users.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon critical">🚫</div>
+        <div class="finding-body">
+          <span class="finding-tag critical">Critical</span><span class="finding-tag wcag">SC 2.1.2 – No Keyboard Trap</span>
+          <h4>Modals — No Focus Trap</h4>
+          <p>Tab escapes modals to the background page. Focus doesn't move in on open. Esc doesn't close. All three ARIA dialog requirements are failing.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon critical">🚫</div>
+        <div class="finding-body">
+          <span class="finding-tag critical">Critical</span><span class="finding-tag wcag">SC 2.1.1 – Keyboard</span>
+          <h4>Contextual Menu — Mouse Only</h4>
+          <p>No keyboard equivalent to right-click on MacBook. The Record / Record Series / Details menu is completely inaccessible without a mouse.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon critical">🚫</div>
+        <div class="finding-body">
+          <span class="finding-tag critical">Critical</span><span class="finding-tag wcag">SC 2.4.1 – Bypass Blocks</span>
+          <h4>No Skip Navigation Link</h4>
+          <p>Users must press Tab 11+ times to bypass the nav rail on every page load before reaching any content.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon critical">🚫</div>
+        <div class="finding-body">
+          <span class="finding-tag critical">Critical</span><span class="finding-tag wcag">SC 2.1.1 – Keyboard</span>
+          <h4>Account & Settings — Tab Broken</h4>
+          <p>Settings controls (language, CC, described video) are not reachable via Tab. Keyboard users cannot change any accessibility preferences.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon critical">🚫</div>
+        <div class="finding-body">
+          <span class="finding-tag critical">Critical</span><span class="finding-tag wcag">SC 2.1.1 – Keyboard</span>
+          <h4>Nav Dropdown — Mouse Only</h4>
+          <p>Enter/Space don't open the navigation dropdown. Pages only reachable through the menu are inaccessible via keyboard.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon high">⚠️</div>
+        <div class="finding-body">
+          <span class="finding-tag high">High</span><span class="finding-tag wcag">SC 1.2.2 – Captions</span>
+          <h4>Media Player — No Caption Shortcut (C)</h4>
+          <p>Deaf and hard-of-hearing users cannot toggle captions via keyboard. C key has no effect — mouse required.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon high">⚠️</div>
+        <div class="finding-body">
+          <span class="finding-tag high">High</span><span class="finding-tag wcag">SC 1.2.5 – Audio Description</span>
+          <h4>Media Player — No Described Video (V)</h4>
+          <p>Blind and low-vision users cannot toggle audio description via keyboard. V key has no effect — mouse required.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon high">⚠️</div>
+        <div class="finding-body">
+          <span class="finding-tag high">High</span><span class="finding-tag wcag">SC 4.1.3 – Status Messages</span>
+          <h4>Auth — Error Messages Silent</h4>
+          <p>Login error messages appear visually but focus doesn't move to them. Screen readers won't announce failed login attempts.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon critical">🚫</div>
+        <div class="finding-body">
+          <span class="finding-tag critical">Critical</span><span class="finding-tag en301">EN 301 549 – Clause 7.3</span>
+          <h4>Player — CC &amp; AD Controls Not Prominent</h4>
+          <p>Captions and audio description controls are only accessible through Settings — not the player bar. Clause 7.3 requires they be at least as prominent as Play/Pause. Settings itself is not keyboard accessible at all.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon high">⚠️</div>
+        <div class="finding-body">
+          <span class="finding-tag high">High</span><span class="finding-tag en301">EN 301 549 – Clause 7.1.4</span>
+          <h4>Player — No Caption Customisation</h4>
+          <p>Users cannot adjust caption font, size, colour, or contrast. Clause 7.1.4 (captions characteristics) requires these controls to be available. Currently no keyboard-accessible way to change them.</p>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-icon high">⚠️</div>
+        <div class="finding-body">
+          <span class="finding-tag high">High</span><span class="finding-tag crtc">CRTC 2025-344 – §64</span>
+          <h4>No Search Filter for Accessible Content</h4>
+          <p>No dedicated way to filter or search for programmes with audio description or captions. CRTC §64 requires a search tool enabling users to find accessible content. Deadline: December 2027.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- CANADIAN COMPLIANCE -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🍁</span> Canadian Compliance Status</div>
+    <div class="section-subtitle">TELUS is subject to two layers of Canadian accessibility law — both currently have active violations or approaching deadlines.</div>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:16px; margin-bottom:32px;">
+
+      <div style="background:#181818; border:1px solid #e93a24; border-radius:12px; padding:22px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <span style="font-size:20px;">⚠️</span>
+          <div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e93a24;">AODA — Overdue since Jan 2021</div>
+            <div style="font-size:15px; font-weight:700; color:#E5E5E5;">Ontario Law — Active Violations</div>
+          </div>
+        </div>
+        <p style="font-size:14px; color:#b0b0b0; line-height:1.6; margin-bottom:14px;">TELUS employs 50+ people in Ontario — WCAG 2.0 AA compliance was mandatory since 2021. The following findings are active AODA violations today.</p>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="font-size:13px; color:#e93a24; display:flex; gap:8px;"><span>❌</span><span>SC 2.4.1 — No skip navigation link</span></div>
+          <div style="font-size:13px; color:#e93a24; display:flex; gap:8px;"><span>❌</span><span>SC 2.1.1 — Nav, EPG, Settings mouse-only</span></div>
+          <div style="font-size:13px; color:#e93a24; display:flex; gap:8px;"><span>❌</span><span>SC 2.1.2 — No focus trap in modals</span></div>
+          <div style="font-size:13px; color:#e93a24; display:flex; gap:8px;"><span>❌</span><span>SC 4.1.3 — Login errors not announced</span></div>
+          <div style="font-size:13px; color:#e93a24; display:flex; gap:8px;"><span>❌</span><span>SC 1.2.2 — C key (captions) missing</span></div>
+          <div style="font-size:13px; color:#e93a24; display:flex; gap:8px;"><span>❌</span><span>SC 1.2.5 — V key (audio description) missing</span></div>
+        </div>
+      </div>
+
+      <div style="background:#181818; border:1px solid #e17a00; border-radius:12px; padding:22px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <span style="font-size:20px;">🕐</span>
+          <div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e17a00;">ACA — Deadline December 5, 2028</div>
+            <div style="font-size:15px; font-weight:700; color:#E5E5E5;">Federal Law — Preparation Required</div>
+          </div>
+        </div>
+        <p style="font-size:14px; color:#b0b0b0; line-height:1.6; margin-bottom:14px;">The Accessible Canada Act Digital Technologies Regulations require TELUS to meet CAN/ASC – EN 301 549:2024. Clause 7 findings are pre-violations.</p>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="font-size:13px; color:#60bf02; display:flex; gap:8px;"><span>✅</span><span>Clause 7.1.1 — Captions play when available</span></div>
+          <div style="font-size:13px; color:#60bf02; display:flex; gap:8px;"><span>✅</span><span>Clause 7.1.2 — Captions in sync with audio</span></div>
+          <div style="font-size:13px; color:#e93a24; display:flex; gap:8px;"><span>❌</span><span>Clause 7.1.4 — No caption customisation</span></div>
+          <div style="font-size:13px; color:#60bf02; display:flex; gap:8px;"><span>✅</span><span>Clause 7.2.1 — Audio description plays</span></div>
+          <div style="font-size:13px; color:#60bf02; display:flex; gap:8px;"><span>✅</span><span>Clause 7.2.2 — Audio description in sync</span></div>
+          <div style="font-size:13px; color:#e93a24; display:flex; gap:8px;"><span>❌</span><span>Clause 7.3 — CC/AD controls not prominent</span></div>
+        </div>
+      </div>
+
+      <div style="background:#181818; border:1px solid #e17a00; border-radius:12px; padding:22px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <span style="font-size:20px;">📡</span>
+          <div>
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e17a00;">CRTC 2025-344 — Deadline December 17, 2027</div>
+            <div style="font-size:15px; font-weight:700; color:#E5E5E5;">Broadcasting Regulator</div>
+          </div>
+        </div>
+        <p style="font-size:14px; color:#b0b0b0; line-height:1.6; margin-bottom:14px;">Following Bill C-11 (Online Streaming Act), TELUS TV+ falls under CRTC jurisdiction as an online streaming undertaking. CRTC 2025-344 adds content coverage and discoverability requirements beyond WCAG.</p>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="font-size:13px; color:#e93a24; display:flex; gap:8px;"><span>❌</span><span>§64 — No accessible content search filter</span></div>
+          <div style="font-size:13px; color:#e93a24; display:flex; gap:8px;"><span>❌</span><span>AD controls not prominent in player bar</span></div>
+          <div style="font-size:13px; color:#b0b0b0; display:flex; gap:8px;"><span>⚠️</span><span>Described video on scripted content (2027)</span></div>
+          <div style="font-size:13px; color:#b0b0b0; display:flex; gap:8px;"><span>⚠️</span><span>Caption accuracy — requires separate audit</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="background:rgba(233,58,36,0.08); border:1px solid rgba(233,58,36,0.3); border-radius:12px; padding:18px 22px; font-size:14px; color:#b0b0b0; line-height:1.6;">
+      <strong style="color:#e93a24;">⚖️ Legal note:</strong> AODA violations are already actionable — the compliance deadline passed in January 2021. ACA and CRTC deadlines are 2027–2028, but remediating WCAG/ARIA failures now directly reduces future regulatory risk. The Canadian compliance columns in the <a href="https://docs.google.com/spreadsheets/d/1YFTstmRE0yygWlmBF-MFAg25GsMxJjEh/" target="_blank" rel="noopener" style="color:#60bf02;">audit spreadsheet</a> map every finding to its specific legal obligation.
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- INTERESTING -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💡</span> Interesting Observations</div>
+    <div class="section-subtitle">Unexpected findings and patterns from the audit.</div>
+    <div class="obs-grid">
+      <div class="obs-card">
+        <div class="obs-icon">🎯</div>
+        <h4>The EPG is the biggest single failure</h4>
+        <p>The TV Guide grid is reachable but completely non-interactive — it scrolls but nothing can be selected. For a core feature of a TV platform, this means the entire programme guide is effectively decorative for keyboard users.</p>
+      </div>
+      <div class="obs-card">
+        <div class="obs-icon">🔐</div>
+        <h4>DRM is an unexpected automation barrier</h4>
+        <p>TELUS TV+ uses Widevine DRM for all streams. Playwright's Chromium lacks the CDM plugin needed to decrypt them — a known industry-wide limitation. Any streaming platform audit must account for this.</p>
+      </div>
+      <div class="obs-card">
+        <div class="obs-icon">♿</div>
+        <h4>The content exists — the controls don't</h4>
+        <p>Captions play, are in sync, and audio description works (Clause 7.1.1, 7.1.2, 7.2.1, 7.2.2 all pass). The failure is in access: the C and V keys don't work, and CC/AD controls are buried in Settings — which isn't keyboard-accessible at all. The content is there for users who need it; they just can't reach it.</p>
+      </div>
+      <div class="obs-card">
+        <div class="obs-icon">🖱️</div>
+        <h4>Right-click menu is a Mac-specific gap</h4>
+        <p>The Context Menu key exists on Windows keyboards but not MacBook. Since TELUS TV+ is primarily Apple-targeted, the entire contextual menu is mouse-only. A ⋯ button on cards would fix all platforms at once.</p>
+      </div>
+      <div class="obs-card">
+        <div class="obs-icon">🔄</div>
+        <h4>Modal failures are systemic, not isolated</h4>
+        <p>The same three modal failures (no focus trap, no Esc, no focus on open) appeared on every modal tested. This is an architectural pattern that needs fixing at the shared modal component level.</p>
+      </div>
+      <div class="obs-card">
+        <div class="obs-icon">✨</div>
+        <h4>Authentication is a bright spot</h4>
+        <p>Despite widespread issues, the login flow is well-implemented — auto-focus, logical Tab order, Enter and Space both work. The only gap is a one-line fix (role="alert" on error messages).</p>
+      </div>
+      <div class="obs-card">
+        <div class="obs-icon">⚖️</div>
+        <h4>AODA violations have been active since 2021</h4>
+        <p>Several findings aren't future risks — they're active legal violations under Ontario law right now. The compliance deadline passed in January 2021. For TELUS, a federally regulated company operating in Ontario, this is an exposure that exists today, independent of the ACA and CRTC deadlines still ahead.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- TIME -->
+  <div class="section">
+    <div class="section-title"><span class="icon">⏱️</span> Time Investment</div>
+    <div class="section-subtitle">Comparing the hybrid automated + AI-assisted approach vs. doing everything manually — including the compliance iteration (Canadian standards research, Clause 7 testing, AODA/ACA/CRTC mapping).</div>
+
+    <div class="time-grid">
+      <div class="time-card auto">
+        <h3>Automated + Manual <span>~27 h</span></h3>
+        <div class="time-phase"><span class="label">Planning & scope</span><span class="val">2 h</span></div>
+        <div class="time-phase"><span class="label">Project setup & auth</span><span class="val">3 h</span></div>
+        <div class="time-phase"><span class="label">Writing 82 test cases</span><span class="val">5 h</span></div>
+        <div class="time-phase"><span class="label">Debugging (DRM, auth, stream)</span><span class="val">4 h</span></div>
+        <div class="time-phase"><span class="label">Running automated tests</span><span class="val">1 h</span></div>
+        <div class="time-phase"><span class="label">Manual tests (player, auth, modals, EPG, Clause 7)</span><span class="val">3 h</span></div>
+        <div class="time-phase"><span class="label">Spreadsheet & reporting</span><span class="val">1.5 h</span></div>
+        <div class="time-phase" style="border-top:1px dashed #333; margin-top:4px; padding-top:12px;"><span class="label" style="color:#60bf02;">Canadian standards research (AODA, ACA, EN 301 549, CRTC)</span><span class="val">3 h</span></div>
+        <div class="time-phase"><span class="label" style="color:#60bf02;">STANDARDS_REFERENCE.md</span><span class="val">1 h</span></div>
+        <div class="time-phase"><span class="label" style="color:#60bf02;">Compliance columns & mapping in spreadsheet</span><span class="val">2 h</span></div>
+        <div class="time-phase"><span class="label" style="color:#60bf02;">HTML report update</span><span class="val">1 h</span></div>
+      </div>
+      <div class="time-card manual">
+        <h3>Fully Manual <span>~75 h</span></h3>
+        <div class="time-phase"><span class="label">Research (WCAG, ARIA, industry standards)</span><span class="val">4 h</span></div>
+        <div class="time-phase"><span class="label">Reading CAN/ASC EN 301 549 (200+ pg), CRTC 2025-344, ACA</span><span class="val">20 h</span></div>
+        <div class="time-phase"><span class="label">Design test plan & define scope</span><span class="val">3 h</span></div>
+        <div class="time-phase"><span class="label">Create & format spreadsheet (incl. compliance structure)</span><span class="val">6 h</span></div>
+        <div class="time-phase"><span class="label">82 tests × ~10 min each</span><span class="val">13.5 h</span></div>
+        <div class="time-phase"><span class="label">WCAG + Canadian compliance mapping by hand (82 rows × 3 standards)</span><span class="val">18 h</span></div>
+        <div class="time-phase"><span class="label">Final report write-up + styled HTML</span><span class="val">10 h</span></div>
+        <div class="time-phase" style="color:#b0b0b0; font-size:13px; font-style:italic;"><span class="label">* 90–100 h for a first-time auditor unfamiliar with Canadian law</span><span class="val"></span></div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:24px;">
+      <div class="time-save-banner" style="margin-top:0">
+        <div class="big">~48h</div>
+        <div>
+          <strong>Saved on the full audit</strong>
+          <p>AI assistance with standards research, compliance mapping, and report generation cut the total from ~75 h to ~27 h — the biggest gains came from reading and synthesising Canadian regulatory documents.</p>
+        </div>
+      </div>
+      <div class="time-save-banner" style="margin-top:0">
+        <div class="big">225h+</div>
+        <div>
+          <strong>Saved across 3 retests</strong>
+          <p>A full automated retest takes ~3 minutes vs ~75 hours manually. Re-run 3× after dev fixes = ~225+ hours saved over the audit lifetime.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- PROS / CONS -->
+  <div class="section">
+    <div class="section-title"><span class="icon">⚖️</span> Automation — Pros & Cons</div>
+    <div class="section-subtitle">What worked well and what were the limitations of this approach.</div>
+    <div class="procon-grid">
+      <div class="procon-card pros">
+        <h3>✅ Pros</h3>
+        <div class="procon-item"><div class="procon-dot"></div><p><strong>Speed on retest</strong>Full 82-item audit reruns in ~3 minutes after fixes are deployed.</p></div>
+        <div class="procon-item"><div class="procon-dot"></div><p><strong>Consistency</strong>Every test runs identically — no human fatigue, no variation.</p></div>
+        <div class="procon-item"><div class="procon-dot"></div><p><strong>Living document</strong>Spreadsheet auto-updates after every run, always reflecting current state.</p></div>
+        <div class="procon-item"><div class="procon-dot"></div><p><strong>Scalability</strong>Adding new tests for new features takes minutes, not hours.</p></div>
+        <div class="procon-item"><div class="procon-dot"></div><p><strong>Rich evidence</strong>Each result records exact observed behaviour, WCAG reference, and severity automatically.</p></div>
+        <div class="procon-item"><div class="procon-dot"></div><p><strong>Compliance research accelerated</strong>Canadian standards (AODA, ACA, CRTC) research, mapping, and documentation done in ~6 h vs an estimated 15+ h manually.</p></div>
+      </div>
+      <div class="procon-card cons">
+        <h3>❌ Cons</h3>
+        <div class="procon-item"><div class="procon-dot"></div><p><strong>Video content needs manual testing</strong>Videos protected by digital rights management (DRM) can't be played by the automation tool — the Media Player section had to be tested by hand.</p></div>
+        <div class="procon-item"><div class="procon-dot"></div><p><strong>Re-login required each run</strong>The app session expires after about an hour, so you need to log back in before each test run.</p></div>
+        <div class="procon-item"><div class="procon-dot"></div><p><strong>Can't always judge what it sees</strong>The tool can detect that something changed on screen, but it can't always tell whether that change was correct or meaningful — a human eye is still needed for some checks.</p></div>
+        <div class="procon-item"><div class="procon-dot"></div><p><strong>3 tests were blocked by existing bugs</strong>Some tests couldn't run because bugs in the app prevented reaching the feature being tested — those will need to be re-checked once the bugs are fixed.</p></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>TELUS TV+ Keyboard Accessibility Audit</strong> · May 2026 · Lais Arata ·
+  Tools: Playwright, ExcelJS, Claude &nbsp;·&nbsp; Standards: WCAG 2.1 AA · AODA · CAN/ASC EN 301 549:2024 · CRTC 2025-344
+</div>
+
+<script>
+  Chart.register(ChartDataLabels);
+
+  // ── Data ──────────────────────────────────────────────────────────────────
+  const categories = [
+    { name: 'Global Navigation',              impl: 3,  miss: 4,  part: 0, tba: 1 },
+    { name: 'Authentication',                 impl: 5,  miss: 1,  part: 0, tba: 0 },
+    { name: 'Content Browse',                 impl: 2,  miss: 2,  part: 0, tba: 0 },
+    { name: 'Search',                         impl: 3,  miss: 1,  part: 0, tba: 0 },
+    { name: 'EPG / TV Guide',                 impl: 2,  miss: 11, part: 0, tba: 2 },
+    { name: 'Content Detail',                 impl: 3,  miss: 2,  part: 0, tba: 0 },
+    { name: 'Media Player',                   impl: 7,  miss: 11, part: 0, tba: 0 },
+    { name: 'Contextual Menu',                impl: 0,  miss: 5,  part: 0, tba: 0 },
+    { name: 'Modals & Overlays',              impl: 1,  miss: 1,  part: 2, tba: 0 },
+    { name: 'Account & Settings',             impl: 2,  miss: 2,  part: 0, tba: 0 },
+    { name: 'Tooltip / Tutorial',             impl: 1,  miss: 1,  part: 0, tba: 0 },
+    { name: 'Captions & Audio Description',   impl: 4,  miss: 3,  part: 0, tba: 0 },
+  ];
+
+  // ── Donut Chart ───────────────────────────────────────────────────────────
+  new Chart(document.getElementById('donutChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Implemented', 'Missing', 'Partial', 'To Be Audited'],
+      datasets: [{
+        data: [33, 44, 2, 3],
+        backgroundColor: ['#60bf02','#e93a24','#e17a00','#454545'],
+        borderColor: '#181818',
+        borderWidth: 3,
+        hoverOffset: 8,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '68%',
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { color: '#b0b0b0', padding: 16, font: { size: 12 }, boxWidth: 12, borderRadius: 4 }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.label}: ${ctx.raw} (${Math.round(ctx.raw/82*100)}%)`
+          }
+        },
+        datalabels: {
+          color: '#fff',
+          font: { weight: 'bold', size: 13 },
+          formatter: (val, ctx) => val > 2 ? `${val}\n(${Math.round(val/82*100)}%)` : '',
+        }
+      }
+    }
+  });
+
+  // ── Bar Chart ─────────────────────────────────────────────────────────────
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: categories.map(c => c.name),
+      datasets: [
+        { label: 'Implemented', data: categories.map(c => c.impl), backgroundColor: '#60bf02', borderRadius: 3 },
+        { label: 'Missing',     data: categories.map(c => c.miss), backgroundColor: '#e93a24', borderRadius: 3 },
+        { label: 'Partial',     data: categories.map(c => c.part), backgroundColor: '#e17a00', borderRadius: 3 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: {
+          stacked: true,
+          ticks: { color: '#b0b0b0', font: { size: 10 }, maxRotation: 35 },
+          grid: { color: '#2B2B2B' }
+        },
+        y: {
+          stacked: true,
+          ticks: { color: '#b0b0b0', stepSize: 2 },
+          grid: { color: '#2B2B2B' }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: { color: '#b0b0b0', font: { size: 12 }, boxWidth: 12, borderRadius: 4 }
+        },
+        datalabels: {
+          color: '#fff',
+          font: { weight: 'bold', size: 10 },
+          formatter: val => val > 0 ? val : '',
+          anchor: 'center',
+          align: 'center',
+        }
+      }
+    }
+  });
+
+  // ── Category Table ────────────────────────────────────────────────────────
+  const tbody = document.getElementById('catTableBody');
+  categories.forEach(c => {
+    const total = c.impl + c.miss + c.part + c.tba;
+    const pImpl = (c.impl / total * 100).toFixed(0);
+    const pMiss = (c.miss / total * 100).toFixed(0);
+    const pPart = (c.part / total * 100).toFixed(0);
+    const pTba  = (c.tba  / total * 100).toFixed(0);
+    tbody.innerHTML += `
+      <tr>
+        <td class="cat-name">${c.name}</td>
+        <td><span class="pill impl">✅ ${c.impl}</span></td>
+        <td><span class="pill miss">❌ ${c.miss}</span></td>
+        <td>${c.part > 0 ? `<span class="pill part">🟡 ${c.part}</span>` : '<span style="color:#334155">—</span>'}</td>
+        <td style="min-width:140px">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div class="progress-wrap">
+              <div class="progress-seg impl" style="width:${pImpl}%"></div>
+              <div class="progress-seg miss"  style="width:${pMiss}%"></div>
+              <div class="progress-seg part"  style="width:${pPart}%"></div>
+              <div class="progress-seg tba"   style="width:${pTba}%"></div>
+            </div>
+            <span style="font-size:12px;color:#b0b0b0">${pImpl}%</span>
+          </div>
+        </td>
+      </tr>`;
+  });
+</script>
+</body>
+</html>
